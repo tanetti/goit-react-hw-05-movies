@@ -7,6 +7,8 @@ export const theme = Object.freeze({
     darkBG: '#ddd',
     lightBG: '#eee',
     whiteBG: '#fff',
+
+    mainAccent: '#b32d19',
   },
   space: [0, '2px', '4px', '8px', '16px', '32px', '64px', '128px', '256px'],
   sizes: {},
@@ -45,5 +47,7 @@ export const theme = Object.freeze({
     desctopMax: '1679.98px',
     bigMin: '1680px',
   },
-  transitions: {},
+  transitions: {
+    color: 'color 300ms ease',
+  },
 });
