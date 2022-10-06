@@ -10,7 +10,7 @@ export const getTrending = async () => {
 
   const queryData = await axios('/trending/movie/day', { params });
 
-  if (queryData?.status !== 200) return 'error';
+  if (queryData?.status !== 200) throw new Error();
 
   return queryData.data.results;
 };
