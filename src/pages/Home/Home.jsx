@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getTrending } from 'api/api';
 import { Container, Section } from 'components/Shared';
 import { HiddenPageTitle } from 'components/Shared/HiddenPageTitle';
-import { useEffect } from 'react';
+import { MovieLink } from 'components/MovieLink/MovieLink';
 
 export const Home = () => {
   const [trendingData, setTrendingData] = useState(null);
@@ -27,9 +27,7 @@ export const Home = () => {
         {status === 'rejected' && <p>ERROR</p>}
         {status === 'resolved' &&
           trendingData &&
-          trendingData.map(movie => (
-            <p key={movie.id}>{movie.original_title}</p>
-          ))}
+          trendingData.map(movie => <MovieLink key={movie.id} movie={movie} />)}
       </Container>
     </Section>
   );
