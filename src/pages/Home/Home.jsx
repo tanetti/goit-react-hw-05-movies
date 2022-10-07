@@ -25,9 +25,15 @@ export const Home = () => {
         <HiddenPageTitle>Trending movies</HiddenPageTitle>
         {status === 'pending' && <p>Loading...</p>}
         {status === 'rejected' && <p>ERROR</p>}
-        {status === 'resolved' &&
-          trendingData &&
-          trendingData.map(movie => <MovieLink key={movie.id} movie={movie} />)}
+        {status === 'resolved' && trendingData && (
+          <ul>
+            {trendingData.map(movie => (
+              <li key={movie.id}>
+                <MovieLink movie={movie} />
+              </li>
+            ))}
+          </ul>
+        )}
       </Container>
     </Section>
   );

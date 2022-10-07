@@ -49,5 +49,6 @@ export const theme = Object.freeze({
   },
   transitions: {
     color: 'color 300ms ease',
+    backgroundColor: 'color 300ms ease',
   },
 });

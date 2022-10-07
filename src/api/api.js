@@ -28,3 +28,29 @@ export const getMovie = async movieID => {
 
   return queryData.data;
 };
+
+export const getCast = async movieID => {
+  const url = `/movie/${movieID}/credits`;
+  const params = {
+    api_key: API_KEY,
+  };
+
+  const queryData = await axios(url, { params });
+
+  if (queryData?.status !== 200) throw new Error();
+
+  return queryData.data.cast;
+};
+
+export const getReviews = async movieID => {
+  const url = `/movie/${movieID}/reviews`;
+  const params = {
+    api_key: API_KEY,
+  };
+
+  const queryData = await axios(url, { params });
+
+  if (queryData?.status !== 200) throw new Error();
+
+  return queryData.data.results;
+};

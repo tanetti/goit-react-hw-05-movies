@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const DescriptionContainer = styled.div`
   display: flex;
+
+  margin-bottom: ${({ theme }) => theme.space[5]};
 `;
 
 export const MovieImage = styled.img`

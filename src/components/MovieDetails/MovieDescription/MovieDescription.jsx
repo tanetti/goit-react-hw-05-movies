@@ -1,4 +1,6 @@
-import { Link, Outlet } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Outlet } from 'react-router-dom';
+import { AdditionalLinks } from './AdditionalLinks/AdditionalLinks';
 import {
   Description,
   DescriptionContainer,
@@ -38,17 +40,18 @@ export const MovieDescription = ({
         </Paragraph>
       </Description>
     </DescriptionContainer>
-    <div>
-      <p>Additional information</p>
-      <ul>
-        <li>
-          <Link to={'cast'}>Cast</Link>
-        </li>
-        <li>
-          <Link to={'reviews'}>Reviews</Link>
-        </li>
-      </ul>
-    </div>
+    <AdditionalLinks />
     <Outlet />
   </>
 );
+
+MovieDescription.propTypes = {
+  movieDetails: PropTypes.shape({
+    poster_path: PropTypes.string.isRequired,
+    original_title: PropTypes.string.isRequired,
+    release_date: PropTypes.string.isRequired,
+    vote_average: PropTypes.number.isRequired,
+    overview: PropTypes.string.isRequired,
+    genres: PropTypes.array.isRequired,
+  }).isRequired,
+};
