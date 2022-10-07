@@ -1,40 +1,40 @@
-import { getMovie } from 'api/api';
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
+import { Container, Section } from 'components/Shared';
+import { getMovie } from 'api/api';
+import { MovieDescription } from './MovieDescription/MovieDescription';
 
 export const MovieDetails = () => {
   const { movieID } = useParams();
-  const { state: prevPageState } = useLocation();
+
+  const { state: prevPageLocation } = useLocation();
+
   const [movieDetails, setMovieDetails] = useState(null);
   const [status, setStatus] = useState('idle');
 
-  const prevPageLocation = prevPageState?.prevLocation;
-  const prevPageMovie = prevPageState?.movie;
-
   useEffect(() => {
-    if (prevPageMovie) {
-      setMovieDetails(prevPageMovie);
-      setStatus('resolved');
-      return;
-    }
-
     setStatus('pending');
+
     getMovie(movieID)
       .then(result => {
         setMovieDetails(result);
         setStatus('resolved');
       })
       .catch(() => setStatus('rejected'));
-  }, [movieID, prevPageMovie]);
+  }, [movieID]);
 
   const backLink = prevPageLocation ?? '/';
 
   return (
-    <>
-      <Link to={backLink}>Go back</Link>
-      {status === 'pending' && <p>Loading...</p>}
-      {status === 'rejected' && <p>ERROR</p>}
-      {status === 'resolved' && movieDetails && <div>{movieDetails.id}</div>}
-    </>
+    <Section>
+      <Container>
+        <Link to={backLink}>Go back</Link>
+        {status === 'pending' && <p>Loading...</p>}
+        {status === 'rejected' && <p>ERROR</p>}
+        {status === 'resolved' && movieDetails && (
+          <MovieDescription movieDetails={movieDetails} />
+        )}
+      </Container>
+    </Section>
   );
 };

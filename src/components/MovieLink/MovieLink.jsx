@@ -6,10 +6,7 @@ export const MovieLink = ({ movie }) => {
   const movieLink = `/movies/${movie.id}`;
 
   return (
-    <StyledMovieLink
-      to={movieLink}
-      state={{ prevLocation: currentLocation, movie }}
-    >
+    <StyledMovieLink to={movieLink} state={currentLocation}>
       {movie.original_title}
     </StyledMovieLink>
   );
