@@ -9,6 +9,7 @@ import {
   Paragraph,
   Title,
 } from './MovieDescription.styled';
+import noImage from 'images/no-image.png';
 
 export const MovieDescription = ({
   movieDetails: {
@@ -23,7 +24,11 @@ export const MovieDescription = ({
   <>
     <DescriptionContainer>
       <MovieImage
-        src={`https://image.tmdb.org/t/p/w185/${poster_path}`}
+        src={
+          poster_path
+            ? `https://image.tmdb.org/t/p/w185/${poster_path}`
+            : noImage
+        }
         alt={original_title}
         width={185}
       />
@@ -32,11 +37,13 @@ export const MovieDescription = ({
         <Paragraph>{`User score: ${Math.round(vote_average * 10)}%`}</Paragraph>
         <Paragraph>
           <ParagraphTitle>Overview</ParagraphTitle>
-          {overview}
+          {overview ? overview : 'Overview not found'}
         </Paragraph>
         <Paragraph>
           <ParagraphTitle>Genres</ParagraphTitle>
-          {genres.map(genre => genre.name).join(', ')}
+          {genres.lenth
+            ? genres.map(genre => genre.name).join(', ')
+            : 'Genres not specified'}
         </Paragraph>
       </Description>
     </DescriptionContainer>
@@ -47,7 +54,7 @@ export const MovieDescription = ({
 
 MovieDescription.propTypes = {
   movieDetails: PropTypes.shape({
-    poster_path: PropTypes.string.isRequired,
+    poster_path: PropTypes.string,
     original_title: PropTypes.string.isRequired,
     release_date: PropTypes.string.isRequired,
     vote_average: PropTypes.number.isRequired,

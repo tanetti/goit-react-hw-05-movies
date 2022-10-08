@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCast } from 'api/api';
 import { CastList } from './CastList/CastList';
+import { Message } from 'components/Shared/Message.styled';
 
 export const MovieCast = () => {
   const { movieID } = useParams();
@@ -19,8 +20,9 @@ export const MovieCast = () => {
   }, [movieID]);
 
   if (status === 'pending') return <p>Loading...</p>;
-
-  if (status === 'rejected') return <p>ERROR</p>;
-
+  if (status === 'rejected')
+    return <Message>Ooops, something went wrong</Message>;
+  if (status === 'resolved' && castData.length === 0)
+    return <Message>There is no cast information for that movie</Message>;
   if (status === 'resolved') return <CastList castData={castData} />;
 };

@@ -16,6 +16,20 @@ export const getTrending = async () => {
   return queryData.data.results;
 };
 
+export const getMovies = async searchQuery => {
+  const url = '/search/movie';
+  const params = {
+    api_key: API_KEY,
+    query: searchQuery,
+  };
+
+  const queryData = await axios(url, { params });
+
+  if (queryData?.status !== 200) throw new Error();
+
+  return queryData.data.results;
+};
+
 export const getMovie = async movieID => {
   const url = `/movie/${movieID}`;
   const params = {

@@ -10,8 +10,8 @@ import noImage from 'images/no-image.png';
 
 export const CastList = ({ castData }) => (
   <StyledCastList>
-    {castData.map(({ id, name, profile_path, character }) => (
-      <CastItem key={id}>
+    {castData.map(({ cast_id, name, profile_path, character }) => (
+      <CastItem key={cast_id}>
         <CastImage
           src={
             profile_path
@@ -30,6 +30,7 @@ export const CastList = ({ castData }) => (
     ))}
   </StyledCastList>
 );
+
 CastList.propTypes = {
   castData: PropTypes.array.isRequired,
 };
