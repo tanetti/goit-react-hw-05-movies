@@ -28,11 +28,12 @@ export const MovieDescription = ({
       <MovieImage
         src={
           poster_path
-            ? `https://image.tmdb.org/t/p/w185/${poster_path}`
+            ? `https://image.tmdb.org/t/p/w342/${poster_path}`
             : noImage
         }
         alt={original_title}
-        width={185}
+        width={245}
+        height={368}
       />
       <Description>
         <Title>{`${original_title} (${release_date.substring(0, 4)})`}</Title>
