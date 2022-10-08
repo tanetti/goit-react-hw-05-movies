@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { AdditionalLinks } from './AdditionalLinks/AdditionalLinks';
 import {
@@ -10,6 +11,7 @@ import {
   Title,
 } from './MovieDescription.styled';
 import noImage from 'images/no-image.png';
+import { Loader } from 'components/Loader/Loader';
 
 export const MovieDescription = ({
   movieDetails: {
@@ -48,7 +50,9 @@ export const MovieDescription = ({
       </Description>
     </DescriptionContainer>
     <AdditionalLinks />
-    <Outlet />
+    <Suspense fallback={<Loader />}>
+      <Outlet />
+    </Suspense>
   </>
 );
 

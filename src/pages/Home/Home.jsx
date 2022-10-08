@@ -6,7 +6,7 @@ import { MoviesList } from 'components/MoviesList/MoviesList';
 import { Message } from 'components/Shared/Message.styled';
 import { Loader } from 'components/Loader/Loader';
 
-export const Home = () => {
+const Home = () => {
   const [moviesData, setMoviesData] = useState(null);
   const [status, setStatus] = useState('pending');
 
@@ -32,3 +32,5 @@ export const Home = () => {
     </Section>
   );
 };
+
+export default Home;

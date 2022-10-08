@@ -5,7 +5,7 @@ import { ReviewsList } from './ReviewsList/ReviewsList';
 import { Message } from 'components/Shared/Message.styled';
 import { Loader } from 'components/Loader/Loader';
 
-export const MovieReviews = () => {
+const MovieReviews = () => {
   const { movieID } = useParams();
   const [reviewsData, setReviewsData] = useState(null);
   const [status, setStatus] = useState('pending');
@@ -26,3 +26,5 @@ export const MovieReviews = () => {
     return <Message>There is no reviews for that movie</Message>;
   if (status === 'resolved') return <ReviewsList reviewsData={reviewsData} />;
 };
+
+export default MovieReviews;

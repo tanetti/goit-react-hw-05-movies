@@ -5,7 +5,7 @@ import { CastList } from './CastList/CastList';
 import { Message } from 'components/Shared/Message.styled';
 import { Loader } from 'components/Loader/Loader';
 
-export const MovieCast = () => {
+const MovieCast = () => {
   const { movieID } = useParams();
 
   const [castData, setCastData] = useState(null);
@@ -27,3 +27,5 @@ export const MovieCast = () => {
     return <Message>There is no cast information for that movie</Message>;
   if (status === 'resolved') return <CastList castData={castData} />;
 };
+
+export default MovieCast;

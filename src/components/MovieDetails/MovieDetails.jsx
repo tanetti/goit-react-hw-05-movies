@@ -7,7 +7,7 @@ import { Message } from 'components/Shared/Message.styled';
 import { BackLink } from './MovieDetails.styled';
 import { Loader } from 'components/Loader/Loader';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieID } = useParams();
 
   const { state: prevPageLocation } = useLocation();
@@ -43,3 +43,5 @@ export const MovieDetails = () => {
     </Section>
   );
 };
+
+export default MovieDetails;
