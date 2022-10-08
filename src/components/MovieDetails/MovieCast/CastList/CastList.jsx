@@ -1,23 +1,35 @@
 import PropTypes from 'prop-types';
-import { StyledCastList, CastImage, CastItem } from './CastList.styled';
+import {
+  StyledCastList,
+  CastImage,
+  CastItem,
+  ArtistName,
+  Character,
+} from './CastList.styled';
+import noImage from 'images/no-image.png';
 
 export const CastList = ({ castData }) => (
   <StyledCastList>
-    {castData.map(artist => (
-      <CastItem key={artist.name}>
-        {artist.profile_path && (
-          <CastImage
-            src={`https://image.tmdb.org/t/p/w185/${artist.profile_path}`}
-            alt={artist.name}
-          />
-        )}
-        <p>{artist.name}</p>
-        <p>{`Character: ${artist.character}`}</p>
+    {castData.map(({ id, name, profile_path, character }) => (
+      <CastItem key={id}>
+        <CastImage
+          src={
+            profile_path
+              ? `https://image.tmdb.org/t/p/w342/${profile_path}`
+              : noImage
+          }
+          alt={name}
+          width={230}
+          height={345}
+        />
+        <ArtistName>{name}</ArtistName>
+        <Character>
+          {character ? `Character: ${character}` : `Character not specified`}
+        </Character>
       </CastItem>
     ))}
   </StyledCastList>
 );
-
 CastList.propTypes = {
   castData: PropTypes.array.isRequired,
 };

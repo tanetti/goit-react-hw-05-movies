@@ -18,12 +18,15 @@ export const ReviewItem = styled.li`
   }
 `;
 
-export const Paragraph = styled.p`
+export const Author = styled.p`
   margin: ${({ theme }) => theme.space[0]};
 
-  &:not(:last-child) {
-    margin-bottom: ${({ theme }) => theme.space[5]};
+  margin-bottom: ${({ theme }) => theme.space[4]};
 
-    font-weight: ${({ theme }) => theme.fontWeights.semiBold};
-  }
+  font-size: ${({ theme }) => theme.fontSizes.m};
+  font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+`;
+
+export const Paragraph = styled.p`
+  margin: ${({ theme }) => theme.space[0]};
 `;

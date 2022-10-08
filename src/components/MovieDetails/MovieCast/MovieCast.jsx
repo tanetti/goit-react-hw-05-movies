@@ -1,16 +1,15 @@
-import { getCast } from 'api/api';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { getCast } from 'api/api';
 import { CastList } from './CastList/CastList';
 
 export const MovieCast = () => {
   const { movieID } = useParams();
+
   const [castData, setCastData] = useState(null);
-  const [status, setStatus] = useState('idle');
+  const [status, setStatus] = useState('pending');
 
   useEffect(() => {
-    setStatus('pending');
-
     getCast(movieID)
       .then(result => {
         setCastData(result);
@@ -19,11 +18,9 @@ export const MovieCast = () => {
       .catch(() => setStatus('rejected'));
   }, [movieID]);
 
-  return (
-    <>
-      {status === 'pending' && <p>Loading...</p>}
-      {status === 'rejected' && <p>ERROR</p>}
-      {status === 'resolved' && castData && <CastList castData={castData} />}
-    </>
-  );
+  if (status === 'pending') return <p>Loading...</p>;
+
+  if (status === 'rejected') return <p>ERROR</p>;
+
+  if (status === 'resolved') return <CastList castData={castData} />;
 };

@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react';
 import { getTrending } from 'api/api';
-import { Container, Section } from 'components/Shared';
+import { Section, Container } from 'components/Shared';
 import { HiddenPageTitle } from 'components/Shared/HiddenPageTitle';
-import { MovieLink } from 'components/MovieLink/MovieLink';
+import { MoviesList } from 'components/MoviesList/MoviesList';
 
 export const Home = () => {
   const [trendingData, setTrendingData] = useState(null);
-  const [status, setStatus] = useState('idle');
+  const [status, setStatus] = useState('pending');
 
   useEffect(() => {
-    setStatus('pending');
-
     getTrending()
       .then(result => {
         setTrendingData(result);
@@ -25,15 +23,7 @@ export const Home = () => {
         <HiddenPageTitle>Trending movies</HiddenPageTitle>
         {status === 'pending' && <p>Loading...</p>}
         {status === 'rejected' && <p>ERROR</p>}
-        {status === 'resolved' && trendingData && (
-          <ul>
-            {trendingData.map(movie => (
-              <li key={movie.id}>
-                <MovieLink movie={movie} />
-              </li>
-            ))}
-          </ul>
-        )}
+        {status === 'resolved' && <MoviesList moviesData={trendingData} />}
       </Container>
     </Section>
   );
