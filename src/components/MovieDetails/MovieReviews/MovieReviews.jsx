@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getReviews } from 'api/api';
 import { ReviewsList } from './ReviewsList/ReviewsList';
 import { Message } from 'components/Shared/Message.styled';
+import { Loader } from 'components/Loader/Loader';
 
 export const MovieReviews = () => {
   const { movieID } = useParams();
@@ -18,7 +19,7 @@ export const MovieReviews = () => {
       .catch(() => setStatus('rejected'));
   }, [movieID]);
 
-  if (status === 'pending') return <p>Loading...</p>;
+  if (status === 'pending') return <Loader />;
   if (status === 'rejected')
     return <Message>Ooops, something went wrong</Message>;
   if (status === 'resolved' && reviewsData.length === 0)

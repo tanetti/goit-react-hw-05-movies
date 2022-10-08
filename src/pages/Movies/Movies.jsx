@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Section, Container } from 'components/Shared';
 import { MoviesSearchForm } from 'components/MoviesSearchForm/MoviesSearchForm';
-import { HiddenPageTitle } from 'components/Shared/HiddenPageTitle';
+import { HiddenPageTitle } from 'components/Shared/PageTitle';
 import { MoviesList } from 'components/MoviesList/MoviesList';
 import { Message } from 'components/Shared/Message.styled';
 import { getMovies } from 'api/api';
+import { Loader } from 'components/Loader/Loader';
 
 export const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams({});
@@ -40,7 +41,7 @@ export const Movies = () => {
           searchParams={searchParams}
         />
         {status === 'idle' && <Message>{`Let's find some movies`}</Message>}
-        {status === 'pending' && <p>Loading...</p>}
+        {status === 'pending' && <Loader />}
         {status === 'rejected' && (
           <Message>Ooops, something went wrong</Message>
         )}

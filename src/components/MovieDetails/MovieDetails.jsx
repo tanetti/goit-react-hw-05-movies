@@ -5,6 +5,7 @@ import { getMovie } from 'api/api';
 import { MovieDescription } from './MovieDescription/MovieDescription';
 import { Message } from 'components/Shared/Message.styled';
 import { BackLink } from './MovieDetails.styled';
+import { Loader } from 'components/Loader/Loader';
 
 export const MovieDetails = () => {
   const { movieID } = useParams();
@@ -31,7 +32,7 @@ export const MovieDetails = () => {
     <Section>
       <Container>
         <BackLink to={backLink.current}>{'< Go back'}</BackLink>
-        {status === 'pending' && <p>Loading...</p>}
+        {status === 'pending' && <Loader />}
         {status === 'rejected' && (
           <Message>Ooops, something went wrong</Message>
         )}

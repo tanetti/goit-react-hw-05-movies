@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { getTrending } from 'api/api';
 import { Section, Container } from 'components/Shared';
-import { HiddenPageTitle } from 'components/Shared/HiddenPageTitle';
+import { PageTitle } from 'components/Shared/PageTitle';
 import { MoviesList } from 'components/MoviesList/MoviesList';
 import { Message } from 'components/Shared/Message.styled';
+import { Loader } from 'components/Loader/Loader';
 
 export const Home = () => {
   const [moviesData, setMoviesData] = useState(null);
@@ -21,8 +22,8 @@ export const Home = () => {
   return (
     <Section>
       <Container>
-        <HiddenPageTitle>Trending movies</HiddenPageTitle>
-        {status === 'pending' && <p>Loading...</p>}
+        <PageTitle>Trending today</PageTitle>
+        {status === 'pending' && <Loader />}
         {status === 'rejected' && (
           <Message>Ooops, something went wrong</Message>
         )}
