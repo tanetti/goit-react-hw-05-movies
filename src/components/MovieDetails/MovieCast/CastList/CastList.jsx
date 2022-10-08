@@ -15,7 +15,7 @@ export const CastList = ({ castData }) => (
         <CastImage
           src={
             profile_path
-              ? `https://image.tmdb.org/t/p/w342/${profile_path}`
+              ? `https://image.tmdb.org/t/p/w342${profile_path}`
               : noImage
           }
           alt={name}
